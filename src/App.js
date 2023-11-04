@@ -3,6 +3,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
 import Header from "./Components/Header";
+import LoginPage from "./Components/Login";
 import ListedJobs from "./Components/ListedJobs";
 import EmployerList from "./Components/EmployerList";
 import EmployeeList from "./Components/EmployeeList";
@@ -19,6 +20,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<>Home</>} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/about" element={<>About</>} />
         <Route path="/contact" element={<>Contact</>} />
         <Route path="/listedjobs" element={<ListedJobs />} />
