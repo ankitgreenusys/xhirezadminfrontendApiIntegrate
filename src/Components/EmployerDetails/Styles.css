@@ -1,0 +1,13 @@
+.emperdetails .cmpydet .desc {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.jobpostlist .jobpost {
+  margin: 5px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 16px;
+}

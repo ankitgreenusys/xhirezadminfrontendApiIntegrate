@@ -1,0 +1,60 @@
+.header {
+  background-color: var(--color-text-light);
+  color: var(--color-text);
+}
+
+.header .headerlogo {
+  width: 150px;
+}
+
+.header .account .acc-details .name {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.header .account .acc-details .email {
+  font-size: 10px;
+}
+
+.header .account .icon {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  font-size: 20px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.header .account .icon:hover {
+  transform: scale(1.1);
+}
+
+.header .account .acc-notif {
+  margin-right: 30px;
+}
+
+.header .navlinks {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 0.7;
+}
+
+.header .navlinks a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.header .navlinks a:hover {
+  color: var(--color-primary);
+}
+
+.header .navlinks a.active {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  padding: 5px 10px;
+  border-radius: 20px;
+}

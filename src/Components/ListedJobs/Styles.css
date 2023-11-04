@@ -1,0 +1,27 @@
+.listedjobs .desc .frame {
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+
+.listedjobs .desc .title {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.listedjobs .desc .majordet {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.listedjobs .desc .longdesct .dechead {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-black);
+}
+
+.listedjobs .desc .longdesct .details {
+  font-weight: 400;
+  font-size: 14px;
+}
+
