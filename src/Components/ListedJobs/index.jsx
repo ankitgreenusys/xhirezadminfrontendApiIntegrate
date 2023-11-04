@@ -1,84 +1,31 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import api from "../../utils/api";
+import ListedJobsTableBody from "./ListedJobsTableBody";
 import "./Styles.css";
 
 const Index = () => {
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-
   // Approval request
   // Approved jobs
   // Deleted jobs
 
-  const [isAppreq, setIsAppreq] = React.useState(true);
-  const [arrAppreq, setArrAppreq] = React.useState([]);
-  const [isAppjobs, setIsAppjobs] = React.useState(false);
-  const [arrAppjobs, setArrAppjobs] = React.useState([]);
-  const [isDeljobs, setIsDeljobs] = React.useState(false);
-  const [arrDeljobs, setArrDeljobs] = React.useState([]);
-
-  React.useEffect(() => {
-    setArrAppreq(data.slice(0, 5));
-    setArrAppjobs(data.slice(5, 10));
-    setArrDeljobs(data.slice(10, 15));
-  }, []);
-
-  const handletabs = (id) => {
-    setIsAppreq(false);
-    setIsAppjobs(false);
-    setIsDeljobs(false);
-
-    if (id === 1) setIsAppreq(true);
-    if (id === 2) setIsAppjobs(true);
-    if (id === 3) setIsDeljobs(true);
+  const [activeTab, setActiveTab] = useState("ApprovalPending");
+  const [approvalPendingList, setApprovalPendingList] = useState([]);
+  const [approvedList, setApprovedList] = useState([]);
+  const [deletedList, setDeletedList] = useState([]);
+  const getData = async () => {
+    try {
+      const { data } = await api.get(`/admin/jobs/${activeTab}`);
+      console.log(data);
+      if (activeTab === "ApprovalPending") setApprovalPendingList(data.jobs);
+      if (activeTab === "Active") setApprovedList(data.jobs);
+      if (activeTab === "Deleted") setDeletedList(data.jobs);
+    } catch (err) {
+      console.log(err);
+    }
   };
-
-  const renderappreqtable = () =>
-    arrAppreq.map((idx) => (
-      <tr key={idx} className={`${idx === 1 ? "active" : "cursor-pointer"}`}>
-        <td class="">
-          <p className="title mb-0">Mobile Application Developer</p>
-          <p className="posted txt-muted">Posted: 5 Feb 2023</p>
-        </td>
-        <td>Mohit Kumar</td>
-        <td>
-          <div className="d-flex align-items-center justify-content-start actbtn">
-            <div className="mybtn btn-blue me-3">Approve</div>
-            <div className="mybtn btn-trans">Decline</div>
-          </div>
-        </td>
-      </tr>
-    ));
-
-  const renderappjobstable = () =>
-    arrAppjobs.map((idx) => (
-      <tr key={idx} className="cursor-pointer">
-        <td>
-          <p className="title mb-0">Mobile Application Developer</p>
-          <p className="posted txt-muted">Posted: 5 Feb 2023</p>
-        </td>
-        <td>Mohit Kumar</td>
-        <td>
-          <div className="d-flex align-items-center justify-content-start actbtn">
-            <div className="mybtn btn-red">Delete</div>
-          </div>
-        </td>
-      </tr>
-    ));
-
-  const renderdeljobstable = () =>
-    arrDeljobs.map((idx) => (
-      <tr key={idx} className="cursor-pointer">
-        <td>
-          <p className="title mb-0">Mobile Application Developer</p>
-          <p className="posted txt-muted">Posted: 5 Feb 2023</p>
-        </td>
-        <td>Mohit Kumar</td>
-        <td>
-          <div className="d-flex align-items-center justify-content-start actbtn">
-            <div className="mybtn btn-black">Restore</div>
-          </div>
-        </td>
-      </tr>
-    ));
+  useEffect(() => {
+    getData();
+  }, [activeTab]);
 
   return (
     <div className="listedjobs marginframe">
@@ -86,20 +33,31 @@ const Index = () => {
         <div className="d-flex align-items-center mb-3">
           <nav className="nav me-auto">
             <span
-              onClick={() => handletabs(1)}
-              className={"listtabs " + (isAppreq ? "" : "txt-muted cursor-pointer")}
+              onClick={() => setActiveTab("ApprovalPending")}
+              className={
+                "listtabs " +
+                (activeTab === "ApprovalPending"
+                  ? ""
+                  : "txt-muted cursor-pointer")
+              }
             >
               Approval Requests
             </span>
             <span
-              onClick={() => handletabs(2)}
-              className={"listtabs " + (isAppjobs ? "" : "txt-muted cursor-pointer")}
+              onClick={() => setActiveTab("Active")}
+              className={
+                "listtabs " +
+                (activeTab === "Active" ? "" : "txt-muted cursor-pointer")
+              }
             >
               Approved Jobs
             </span>
             <span
-              onClick={() => handletabs(3)}
-              className={"listtabs " + (isDeljobs ? "" : "txt-muted cursor-pointer")}
+              onClick={() => setActiveTab("Deleted")}
+              className={
+                "listtabs " +
+                (activeTab === "Deleted" ? "" : "txt-muted cursor-pointer")
+              }
             >
               Deleted Jobs
             </span>
@@ -123,9 +81,13 @@ const Index = () => {
                 <table cellPadding="0" cellSpacing="0" border="0">
                   <thead></thead>
                   <tbody>
-                    {isAppreq && renderappreqtable()}
-                    {isAppjobs && renderappjobstable()}
-                    {isDeljobs && renderdeljobstable()}
+                    <ListedJobsTableBody
+                      activeTab={activeTab}
+                      approvalPendingList={approvalPendingList}
+                      approvedList={approvedList}
+                      deletedList={deletedList}
+                      getData={getData}
+                    />
                   </tbody>
                 </table>
               </div>
