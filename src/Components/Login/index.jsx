@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../utils/api";
+import axios from "axios";
 import "./Styles.css";
 
 const LoginPage = () => {
@@ -11,7 +11,10 @@ const LoginPage = () => {
 
   const login = async () => {
     try {
-      const { data } = await api.post("/admin/signin", { email, password });
+      const { data } = await axios.post(
+        process.env.REACT_APP_BASE_API_URL + "/admin/signin",
+        { email, password }
+      );
       console.log(data);
       localStorage.setItem("token", data.token);
       navigate("/listedjobs");
@@ -23,7 +26,7 @@ const LoginPage = () => {
     e.preventDefault();
     login();
   };
-  
+
   return (
     <div className="login-page">
       <h1>Login</h1>
