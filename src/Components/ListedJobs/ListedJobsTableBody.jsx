@@ -1,3 +1,4 @@
+import { useState } from "react";
 import api from "../../utils/api";
 import dateFormatter from "../../utils/dateFormatter";
 
@@ -7,6 +8,8 @@ const ListedJobsTableBody = ({
   approvedList,
   deletedList,
   getData,
+  activeItem,
+  setActiveItem,
 }) => {
   const changeJobStatus = async (jobId, status) => {
     try {
@@ -22,10 +25,13 @@ const ListedJobsTableBody = ({
   if (activeTab === "ApprovalPending") {
     return (
       <>
-        {approvalPendingList.map((item, idx) => (
+        {approvalPendingList.map((item) => (
           <tr
             key={item._id}
-            className={`${idx === 1 ? "active" : "cursor-pointer"}`}
+            onClick={() => setActiveItem(item)}
+            className={`${
+              activeItem._id === item._id ? "active" : "cursor-pointer"
+            }`}
           >
             <td className="">
               <p className="title mb-0">{item.jobTitle}</p>
@@ -58,10 +64,13 @@ const ListedJobsTableBody = ({
   if (activeTab === "Active") {
     return (
       <>
-        {approvedList.map((item, idx) => (
+        {approvedList.map((item) => (
           <tr
             key={item._id}
-            className={`${idx === 1 ? "active" : "cursor-pointer"}`}
+            onClick={() => setActiveItem(item)}
+            className={`${
+              activeItem._id === item._id ? "active" : "cursor-pointer"
+            }`}
           >
             <td className="">
               <p className="title mb-0">{item.jobTitle}</p>
@@ -88,10 +97,13 @@ const ListedJobsTableBody = ({
   if (activeTab === "Deleted") {
     return (
       <>
-        {deletedList.map((item, idx) => (
+        {deletedList.map((item) => (
           <tr
             key={item._id}
-            className={`${idx === 1 ? "active" : "cursor-pointer"}`}
+            onClick={() => setActiveItem(item)}
+            className={`${
+              activeItem._id === item._id ? "active" : "cursor-pointer"
+            }`}
           >
             <td className="">
               <p className="title mb-0">{item.jobTitle}</p>
