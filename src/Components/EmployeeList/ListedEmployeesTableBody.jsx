@@ -10,9 +10,9 @@ const ListedEmployeesTableBody = ({
   deletedList,
   getData,
 }) => {
-  const changeEmployeeStatus = async (jobId, status) => {
+  const changeEmployeeStatus = async (empId, status) => {
     try {
-      const { data } = await api.patch(`/admin/changeEmployeeStatus/${jobId}`, {
+      const { data } = await api.patch(`/admin/changeEmployeeStatus/${empId}`, {
         status,
       });
       console.log(data);
@@ -41,7 +41,7 @@ const ListedEmployeesTableBody = ({
             <td>{item.city}</td>
             <td>
               <div className="d-flex align-items-center justify-content-start actbtn">
-                <Link to="/employee/details" className="mybtn btn-black me-3">
+                <Link to={`/employee/${item._id}/details`} className="mybtn btn-black me-3">
                   View
                 </Link>
                 <div
@@ -87,7 +87,7 @@ const ListedEmployeesTableBody = ({
                 >
                   Reactivate
                 </div>
-                <Link to="/employee/details" className="mybtn btn-trans">
+                <Link to={`/employee/${item._id}/details`} className="mybtn btn-trans">
                   View
                 </Link>
                 <div
@@ -127,7 +127,7 @@ const ListedEmployeesTableBody = ({
                 >
                   Restore
                 </div>
-                <Link to="/employee/details" className="mybtn btn-trans">
+                <Link to={`/employee/${item._id}/details`} className="mybtn btn-trans">
                   View
                 </Link>
                 <div

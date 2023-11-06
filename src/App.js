@@ -19,13 +19,13 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<>Home</>} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/about" element={<>About</>} />
-        <Route path="/contact" element={<>Contact</>} />
         <Route path="/listedjobs" element={<ListedJobs />} />
         <Route path="/employee" element={<EmployeeList />} />
-        <Route path="/employee/details" element={<EmployeeDeatils />} />
+        <Route path="/employee/:id/details" element={<EmployeeDeatils />} />
+        <Route path="/" element={<>Home</>} />
+        <Route path="/about" element={<>About</>} />
+        <Route path="/contact" element={<>Contact</>} />
         <Route path="/employer" element={<EmployerList />} />
         <Route path="/employer/details" element={<EmployerDeatils />} />
         <Route path="/sponsored" element={<SponsedList />} />

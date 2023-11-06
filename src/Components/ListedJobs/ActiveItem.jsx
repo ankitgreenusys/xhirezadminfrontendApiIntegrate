@@ -19,7 +19,7 @@ const ActiveItem = ({ activeItem }) => {
             {activeItem.experience.min}-{activeItem.experience.max} Years
           </p>
           <p>
-            <i class="fa-solid fa-money-bills me-1"></i> Rs.{" "}
+            <i className="fa-solid fa-money-bills me-1"></i> Rs.{" "}
             {activeItem.pay.min}-{activeItem.pay.max} PM
           </p>
         </div>
