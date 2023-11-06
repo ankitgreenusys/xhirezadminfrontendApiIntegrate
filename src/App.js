@@ -23,11 +23,11 @@ function App() {
         <Route path="/listedjobs" element={<ListedJobs />} />
         <Route path="/employee" element={<EmployeeList />} />
         <Route path="/employee/:id/details" element={<EmployeeDeatils />} />
+        <Route path="/employer/:id/details" element={<EmployerDeatils />} />
         <Route path="/" element={<>Home</>} />
         <Route path="/about" element={<>About</>} />
         <Route path="/contact" element={<>Contact</>} />
         <Route path="/employer" element={<EmployerList />} />
-        <Route path="/employer/details" element={<EmployerDeatils />} />
         <Route path="/sponsored" element={<SponsedList />} />
         <Route path="/resdex" element={<Resdex />} />
         <Route path="/resdex/details" element={<ResdexDetails />} />
