@@ -1,4 +1,3 @@
-import { useState } from "react";
 import api from "../../utils/api";
 import dateFormatter from "../../utils/dateFormatter";
 
@@ -17,7 +16,8 @@ const ListedJobsTableBody = ({
         status,
       });
       console.log(data);
-      getData();
+      getData(status);
+      getData(activeTab);
     } catch (error) {
       console.log(error);
     }

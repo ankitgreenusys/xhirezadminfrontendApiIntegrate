@@ -15,13 +15,14 @@ const Index = () => {
   const [approvalPendingList, setApprovalPendingList] = useState([]);
   const [approvedList, setApprovedList] = useState([]);
   const [deletedList, setDeletedList] = useState([]);
-  const getData = async () => {
+  const getData = async (tab) => {
+    if (!tab) tab = activeTab;
     try {
-      const { data } = await api.get(`/admin/jobs/${activeTab}`);
+      const { data } = await api.get(`/admin/jobs/${tab}`);
       console.log(data);
-      if (activeTab === "ApprovalPending") setApprovalPendingList(data.jobs);
-      if (activeTab === "Active") setApprovedList(data.jobs);
-      if (activeTab === "Deleted") setDeletedList(data.jobs);
+      if (tab === "ApprovalPending") setApprovalPendingList(data.jobs);
+      if (tab === "Active") setApprovedList(data.jobs);
+      if (tab === "Deleted") setDeletedList(data.jobs);
       if (data.jobs.length > 0) setActiveItem(data.jobs[0]);
     } catch (err) {
       console.log(err);
@@ -104,7 +105,16 @@ const Index = () => {
           </div>
         </div>
         <div className="col-lg-5 mt-3 desc">
-          <ActiveItem activeItem={activeItem} />
+          {activeTab === "ApprovalPending" &&
+            approvalPendingList.length > 0 && (
+              <ActiveItem activeItem={activeItem} />
+            )}
+          {activeTab === "Active" && approvedList.length > 0 && (
+            <ActiveItem activeItem={activeItem} />
+          )}
+          {activeTab === "Deleted" && deletedList.length > 0 && (
+            <ActiveItem activeItem={activeItem} />
+          )}
         </div>
       </div>
     </div>
