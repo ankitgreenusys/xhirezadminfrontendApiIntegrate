@@ -53,11 +53,11 @@ const Index = () => {
             >
               <i className="fa-solid fa-circle-user icon d-flex justify-content-around align-items-center"></i>
               <div className="acc-details">
-                <p className="txt-blue my-0 mx-1 name">Mohit Kumar</p>
-                <p className="txt-muted my-0 mx-1 email">mohit@gmail.com</p>
+                <p className="txt-blue my-0 mx-1 name">Admin</p>
+                <p className="txt-muted my-0 mx-1 email">admin@gmail.com</p>
               </div>
             </span>
-            <ul className="dropdown-menu">
+            {/* <ul className="dropdown-menu">
               <li>
                 <a className="dropdown-item" href="#">
                   Action
@@ -73,7 +73,7 @@ const Index = () => {
                   Something
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>
